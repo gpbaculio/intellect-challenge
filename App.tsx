@@ -26,6 +26,7 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <Header translateX={translateX} />
       <Animated.ScrollView
+        bounces={false}
         onScroll={onScroll}
         scrollEventThrottle={16}
         horizontal
