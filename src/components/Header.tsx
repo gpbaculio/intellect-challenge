@@ -18,30 +18,24 @@ const Header = ({translateX}: {translateX: Animated.SharedValue<number>}) => {
       backgroundColor={'#325D6E'}
       flexDirection="row"
       justifyContent="space-between"
-      padding={6}>
-      {new Array(5).fill(0).map((_, index) => {
-        const animatedStyle = useAnimatedStyle(() => {
-          const backgroundColor = interpolateColor(
-            translateX.value,
-            [(index - 1) * width, index * width, (index + 1) * width],
-            ['#92AAB4', '#ffffff', '#92AAB4'],
-          );
-
-          return {
-            backgroundColor,
-          };
-        });
-        return (
-          <DynamicView
-            borderRadius={4}
-            key={index}
-            backgroundColor={'green'}
-            width={width / 6}
-            isAnimated
-            animatedStyle={animatedStyle}
-          />
-        );
-      })}
+      paddingTop={6}
+      paddingHorizontal={16}
+      paddingBottom={6}>
+      {new Array(5).fill(0).map((_, index) => (
+        <DynamicView
+          borderRadius={4}
+          key={index}
+          backgroundColor={'green'}
+          width={width / 6.5}
+          animatedStyle={useAnimatedStyle(() => ({
+            backgroundColor: interpolateColor(
+              translateX.value,
+              [(index - 1) * width, index * width, (index + 1) * width],
+              ['#92AAB4', '#ffffff', '#92AAB4'],
+            ),
+          }))}
+        />
+      ))}
     </DynamicView>
   );
 };

@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import {StyleProp, View, ViewStyle} from 'react-native';
+import {StyleProp, View, ViewProps, ViewStyle} from 'react-native';
 import Animated, {AnimatedStyleProp} from 'react-native-reanimated';
 
 export interface DynamicViewProps {
@@ -51,11 +51,9 @@ export interface DynamicViewProps {
   testID?: string;
   opacity?: ViewStyle['opacity'];
   zIndex?: ViewStyle['zIndex'];
-  isAnimated?: boolean;
 }
 
 const DynamicView = ({
-  isAnimated,
   children,
   flex,
   flexDirection,
@@ -104,7 +102,8 @@ const DynamicView = ({
   opacity,
   zIndex,
   animatedStyle,
-}: DynamicViewProps) => {
+  ...rest
+}: DynamicViewProps & ViewProps) => {
   const viewStyle = [
     {
       flex,
@@ -155,12 +154,12 @@ const DynamicView = ({
     style && style,
   ];
 
-  return isAnimated ? (
-    <Animated.View testID={testID} style={[viewStyle, animatedStyle]}>
+  return animatedStyle ? (
+    <Animated.View testID={testID} style={[viewStyle, animatedStyle]} {...rest}>
       {children}
     </Animated.View>
   ) : (
-    <View testID={testID} style={viewStyle}>
+    <View testID={testID} style={viewStyle} {...rest}>
       {children}
     </View>
   );

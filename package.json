@@ -10,9 +10,16 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@types/d3": "^7.1.0",
+    "d3": "^7.3.0",
+    "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-native": "0.67.2",
-    "react-native-reanimated": "^2.3.1"
+    "react-native-gesture-handler": "^2.2.0",
+    "react-native-reanimated": "^2.3.1",
+    "react-native-redash": "^16.2.3",
+    "react-native-svg": "^12.1.1",
+    "react-native-waveview": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -42,6 +49,9 @@
       "jsx",
       "json",
       "node"
+    ],
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
     ]
   }
 }
